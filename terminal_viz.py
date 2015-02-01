@@ -1,7 +1,7 @@
 import pydub as pd
 import time
 import threading
-execfile('pydub_help.py')
+from pydub.playback import play
 
 def viz_play(song, viz):
 	t = time.time
@@ -49,5 +49,6 @@ def main():
 				viz.append(bar)
 
 			viz_play(song, viz)
+
 
 main()
