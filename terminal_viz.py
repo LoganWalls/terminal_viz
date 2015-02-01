@@ -36,7 +36,7 @@ def main():
 
 		else:
 			song = pd.AudioSegment.from_file(path, format='mp3')
-			song_max = float(song.max)
+			song_max = float(pow(song.max,2) )
 			duration = len(song)
 
 			#A list with the max amplitude of the song at every millisecond.
@@ -44,7 +44,7 @@ def main():
 
 			for i in xrange(1, duration):
 				chunk = song[i-1:i]
-				bar = '|' * int((chunk.max/song_max)*60)
+				bar = '|' * int((pow(chunk.max,2) /song_max)*70)
 				bar = bar+'\n'+bar
 				viz.append(bar)
 
