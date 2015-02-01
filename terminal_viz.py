@@ -30,20 +30,24 @@ def main():
 	path = ''
 	while path != 'EXIT':
 		path = str(raw_input('MP3 Path ("EXIT" to quit):')).strip()
-		song = pd.AudioSegment.from_file(path, format='mp3')
-		song_max = float(song.max)
-		duration = len(song)
 
-		#A list with the max amplitude of the song at every millisecond.
-		viz = list()
+		if path == 'EXIT':
+			break
 
-		for i in xrange(1, duration):
-			chunk = song[i-1:i]
-			bar = '|' * int((chunk.max/song_max)*60)
-			bar = bar+'\n'+bar
-			viz.append(bar)
+		else:
+			song = pd.AudioSegment.from_file(path, format='mp3')
+			song_max = float(song.max)
+			duration = len(song)
 
-		viz_play(song, viz)
+			#A list with the max amplitude of the song at every millisecond.
+			viz = list()
 
+			for i in xrange(1, duration):
+				chunk = song[i-1:i]
+				bar = '|' * int((chunk.max/song_max)*60)
+				bar = bar+'\n'+bar
+				viz.append(bar)
+
+			viz_play(song, viz)
 
 main()
